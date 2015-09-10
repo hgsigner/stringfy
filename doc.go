@@ -1,4 +1,4 @@
-//Simple string manipulation for Go
+//Simple string manipulation for Go.
 package stringfy
 
 //Importing only for improving docs.
