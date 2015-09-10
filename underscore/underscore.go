@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-//Performs the the underscore function on a string
+//Performs the the underscore function on a string.
 func PerformOn(s string) string {
 
 	strim := strings.Trim(s, " ")
