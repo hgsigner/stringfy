@@ -1,0 +1,1 @@
+##Stringfy is a simple string manipulation package for GO.
