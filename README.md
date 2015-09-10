@@ -1,4 +1,6 @@
-#Stringfy is a simple string manipulation package for GO.
+#Stringfy
+
+Stringfy is a collection of string manipulation packages for GO.
 - - -
 
 ##Install:
