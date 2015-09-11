@@ -137,7 +137,17 @@ func Test_Plural(t *testing.T) {
 		{
 			count:    2,
 			singular: "quiz",
-			out:      "2 quizes",
+			out:      "2 quizzes",
+		},
+		{
+			count:    2,
+			singular: "ox",
+			out:      "2 oxen",
+		},
+		{
+			count:    2,
+			singular: "oxen",
+			out:      "2 oxen",
 		},
 	}
 
