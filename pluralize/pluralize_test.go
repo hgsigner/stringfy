@@ -94,6 +94,51 @@ func Test_Plural(t *testing.T) {
 			singular: "analysis",
 			out:      "2 analyses",
 		},
+		{
+			count:    2,
+			singular: "wolf",
+			out:      "2 wolves",
+		},
+		{
+			count:    2,
+			singular: "thief",
+			out:      "2 thieves",
+		},
+		{
+			count:    2,
+			singular: "hive",
+			out:      "2 hives",
+		},
+		{
+			count:    2,
+			singular: "quality",
+			out:      "2 qualities",
+		},
+		{
+			count:    2,
+			singular: "fox",
+			out:      "2 foxes",
+		},
+		{
+			count:    2,
+			singular: "dash",
+			out:      "2 dashes",
+		},
+		{
+			count:    2,
+			singular: "pass",
+			out:      "2 passes",
+		},
+		{
+			count:    2,
+			singular: "vouch",
+			out:      "2 vouches",
+		},
+		{
+			count:    2,
+			singular: "quiz",
+			out:      "2 quizes",
+		},
 	}
 
 	for _, t := range tests {
