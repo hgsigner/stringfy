@@ -55,7 +55,21 @@ func pluralize_word(w string) string {
 
 	var word string
 
-	//Iterates through rules
+	//Checks if it is uncountable
+	for _, unc := range uncountable_list {
+		if w == unc {
+			return unc
+		}
+	}
+
+	//Check if it is in the irregular_rules
+	for k, v := range irregular_rules {
+		if w == k {
+			return v
+		}
+	}
+
+	//Iterates through plural_rules
 	for k, v := range plural_rules {
 		re := regexp.MustCompile(k)
 		out := re.FindStringSubmatch(w)

@@ -23,3 +23,14 @@ var plural_rules = map[string]string{
 	`^(oxen)$`:                  "",
 	`^(quiz)$`:                  "zes",
 }
+
+var irregular_rules = map[string]string{
+	"person": "people",
+	"man":    "men",
+	"child":  "children",
+	"sex":    "sexes",
+	"move":   "moves",
+	"zombie": "zombies",
+}
+
+var uncountable_list = []string{"equipment", "information", "rice", "money", "species", "series", "fish", "sheep", "jeans", "police"}
