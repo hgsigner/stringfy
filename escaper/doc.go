@@ -11,7 +11,7 @@
 //  )
 //
 //  func main() {
-//    es := ecaper.PerformOn("São Paulo")
+//    es := escaper.PerformOn("São Paulo")
 //    fmt.Prinln(es) // Sao Paulo
 //  }
 package escaper
