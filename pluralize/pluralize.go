@@ -70,12 +70,27 @@ func pluralize_word(w string) string {
 	}
 
 	//Iterates through plural_rules
-	for k, v := range plural_rules {
-		re := regexp.MustCompile(k)
+	regex_matches_slice := make([][]string, 0)
+	for reg, replacer := range plural_rules {
+		re := regexp.MustCompile(reg)
 		out := re.FindStringSubmatch(w)
-		if len(out) > 1 {
-			word = re.ReplaceAllString(w, "$1${2}"+v)
-			break
+		if len(out) > 1 && out[0] != "" {
+			out = append(out, reg, replacer)
+			regex_matches_slice = append(regex_matches_slice, out)
+		}
+	}
+
+	//Filters if more than one regex has matched
+	switch len(regex_matches_slice) {
+	case 1:
+		re := regexp.MustCompile(regex_matches_slice[0][len(regex_matches_slice[0])-2])
+		word = re.ReplaceAllString(w, regex_matches_slice[0][len(regex_matches_slice[0])-1])
+	case 2:
+		for _, v := range regex_matches_slice {
+			if v[len(v)-3] != w {
+				re := regexp.MustCompile(v[len(v)-2])
+				word = re.ReplaceAllString(w, v[len(v)-1])
+			}
 		}
 	}
 

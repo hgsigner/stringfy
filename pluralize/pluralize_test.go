@@ -137,6 +137,16 @@ func Test_Plural(t *testing.T) {
 		},
 		{
 			count:    2,
+			singular: "index",
+			out:      "2 indices",
+		},
+		{
+			count:    2,
+			singular: "matrix",
+			out:      "2 matrices",
+		},
+		{
+			count:    2,
 			singular: "quiz",
 			out:      "2 quizzes",
 		},
@@ -229,6 +239,11 @@ func Test_Plural(t *testing.T) {
 			count:    2,
 			singular: "police",
 			out:      "2 police",
+		},
+		{
+			count:    2,
+			singular: "flower",
+			out:      "2 flowers",
 		},
 	}
 
