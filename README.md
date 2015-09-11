@@ -35,7 +35,7 @@ import(
 )
 
 func main() {
-  //Defual plural
+  //Default plural
   p1 := pluralize.New()
   p1.Perform(2, "octopus")
   fmt.Prinln(p1) // 2 octopi
