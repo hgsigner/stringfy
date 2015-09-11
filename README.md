@@ -49,5 +49,7 @@ func main() {
 ```
 
 - - -
-For more information, please refer to the [docs.](https://godoc.org/github.com/hgsigner/stringfy)
-**Work in progress. More packages to come.**
+For more information, please refer to the [docs.](https://godoc.org/github.com/hgsigner/stringfy) **Work in progress. More packages to come.**
+- - -
+##Licensing
+You can use or modify it to meet your needs.
