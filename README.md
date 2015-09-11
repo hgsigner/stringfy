@@ -8,6 +8,23 @@ Stringfy is a collection of string manipulation packages for GO.
 ```bash
 $ go get github.com/hgsigner/stringfy
 ```
+
+##escaper
+
+```go
+package main
+
+import (
+  "fmt"
+  "github.com/hgsigner/stringfy/escaper"
+)
+
+func main() {
+  es := ecaper.PerformOn("São Paulo")
+  fmt.Prinln(es) // Sao Paulo
+}
+```
+
 ##underscore:
 
 ```go
