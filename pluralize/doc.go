@@ -12,6 +12,6 @@
 //  func main() {
 //    p := pluralize.New()
 //    p.Perform(2, "octopus")
-//    fmt.Prinln(p) // 2 octopi
+//    fmt.Println(p) // 2 octopi
 //  }
 package pluralize

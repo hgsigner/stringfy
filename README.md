@@ -1,4 +1,4 @@
-#Stringfy [![Build Status](https://travis-ci.org/hgsigner/stringfy.svg?branch=master)](https://travis-ci.org/hgsigner/stringfy)
+#Stringfy [![Build Status](https://travis-ci.org/hgsigner/stringfy.svg?branch=master)](https://travis-ci.org/hgsigner/stringfy) [![GoDoc](https://godoc.org/github.com/hgsigner/stringfy?status.svg)](https://godoc.org/github.com/hgsigner/stringfy)
 
 Stringfy is a collection of string manipulation packages for GO.
 - - -
@@ -20,7 +20,7 @@ import(
 
 func main() {
 	un := underscore.PerformOn("São Paulo")
-	fmt.Prinln(un) // sao_paulo
+	fmt.Println(un) // sao_paulo
 }
 ```
 
@@ -38,15 +38,16 @@ func main() {
   //Default plural
   p1 := pluralize.New()
   p1.Perform(2, "octopus")
-  fmt.Prinln(p1) // 2 octopi
+  fmt.Println(p1) // 2 octopi
   
   //Custom plural
   p2 := pluralize.New()
   p2.Options(pluralize.AddPlural("boatys"))
   p2.Perform(2, "boat")
-  fmt.Prinln(p2) // 2 boatys
+  fmt.Println(p2) // 2 boatys
 }
 ```
 
 - - -
+For more information, please refer to the [docs.](https://godoc.org/github.com/hgsigner/stringfy)
 **Work in progress. More packages to come.**

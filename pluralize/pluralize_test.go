@@ -1,6 +1,7 @@
 package pluralize_test
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/hgsigner/stringfy/pluralize"
@@ -239,4 +240,25 @@ func Test_Plural(t *testing.T) {
 		pf := p.Perform(t.count, t.singular)
 		a.Equal(t.out, pf)
 	}
+}
+
+func ExampleNew() {
+	p1 := pluralize.New()
+	fmt.Println(p1.Perform(2, "octopus"))
+
+	p2 := pluralize.New()
+	fmt.Println(p2.Perform(2, "post"))
+
+	p3 := pluralize.New()
+	fmt.Println(p3.Perform(2, "jeans"))
+
+	//Custom plural
+	pc := pluralize.New()
+	pc.Options(pluralize.AddPlural("boatys"))
+	fmt.Println(pc.Perform(2, "boat"))
+	// Output:
+	// 2 octopi
+	// 2 posts
+	// 2 jeans
+	// 2 boatys
 }
