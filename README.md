@@ -52,8 +52,8 @@ import(
 )
 
 func main() {
-  un := parameterize.PerformOn("São Paulo")
-  fmt.Println(un) // sao-paulo
+  pr := parameterize.PerformOn("São Paulo")
+  fmt.Println(pr) // sao-paulo
 }
 ```
 
