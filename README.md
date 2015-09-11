@@ -41,6 +41,22 @@ func main() {
 }
 ```
 
+##parameterize:
+
+```go
+package main
+
+import( 
+  "fmt"
+  "github.com/hgsigner/stringfy/parameterize"
+)
+
+func main() {
+  un := parameterize.PerformOn("São Paulo")
+  fmt.Println(un) // sao-paulo
+}
+```
+
 ##pluralize:
 
 ```go
