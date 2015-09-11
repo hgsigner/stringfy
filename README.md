@@ -1,4 +1,4 @@
-#Stringfy
+#Stringfy [![Build Status](https://travis-ci.org/hgsigner/stringfy.svg?branch=master)](https://travis-ci.org/hgsigner/stringfy)
 
 Stringfy is a collection of string manipulation packages for GO.
 - - -
