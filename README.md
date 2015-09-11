@@ -39,8 +39,8 @@ func main() {
   p1 := pluralize.New()
   p1.Perform(2, "octopus")
   fmt.Prinln(p1) // 2 octopi
-	
-	//Custom plural
+  
+  //Custom plural
   p2 := pluralize.New()
   p2.Options(pluralize.AddPlural("boatys"))
   p2.Perform(2, "boat")
