@@ -1,4 +1,4 @@
-package underscore
+package escaper
 
 var rules = map[string]string{
 	"À": "A",

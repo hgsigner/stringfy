@@ -1,8 +1,9 @@
 package underscore
 
 import (
-	"regexp"
 	"strings"
+
+	"github.com/hgsigner/stringfy/escaper"
 )
 
 //Performs the the underscore function on a string.
@@ -15,13 +16,7 @@ func PerformOn(s string) string {
 		return ssplit[0]
 	}
 
-	joined := strings.Join(ssplit, "_")
-
-	for k, v := range rules {
-		re := regexp.MustCompile(k)
-		joined = re.ReplaceAllString(joined, v)
-	}
-
+	joined := escaper.PerformOn(strings.Join(ssplit, "_"))
 	return joined
 
 }
