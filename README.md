@@ -81,6 +81,22 @@ func main() {
 }
 ```
 
+##camelcase
+
+```go
+package main
+
+import (
+ "fmt"
+ "github.com/hgsigner/stringfy/camelcase"
+)
+
+func main() {
+ cc := camelcase.PerformOn("fizz_buzz_bazz")
+ fmt.Prinln(cc) // FizzBuzzBazz
+}
+```
+
 - - -
 For more information, please refer to the [docs.](https://godoc.org/github.com/hgsigner/stringfy) **Work in progress. More packages to come.**
 - - -

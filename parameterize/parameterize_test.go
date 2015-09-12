@@ -1,13 +1,12 @@
-package parameterize
+package parameterize_test
 
 import (
 	"testing"
 
-	"github.com/stretchr/testify/assert"
+	"github.com/hgsigner/stringfy/parameterize"
 )
 
 func Test_Parameterize(t *testing.T) {
-	a := assert.New(t)
 
 	tests := []struct {
 		in, out string
@@ -21,8 +20,11 @@ func Test_Parameterize(t *testing.T) {
 		{in: "São França Ávido", out: "sao-franca-avido"},
 	}
 
-	for _, t := range tests {
-		a.Equal(t.out, PerformOn(t.in))
+	for _, test := range tests {
+		par := parameterize.PerformOn(test.in)
+		if par != test.out {
+			t.Errorf("\nExpected: %s\nGot:      %s", test.out, par)
+		}
 	}
 
 }

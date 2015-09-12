@@ -1,13 +1,12 @@
-package escaper
+package escaper_test
 
 import (
 	"testing"
 
-	"github.com/stretchr/testify/assert"
+	"github.com/hgsigner/stringfy/escaper"
 )
 
 func Test_PerformOn(t *testing.T) {
-	a := assert.New(t)
 
 	tests := []struct {
 		in, out string
@@ -15,7 +14,10 @@ func Test_PerformOn(t *testing.T) {
 		{in: "São França Ávido", out: "Sao Franca Avido"},
 	}
 
-	for _, t := range tests {
-		a.Equal(t.out, PerformOn(t.in))
+	for _, test := range tests {
+		es := escaper.PerformOn(test.in)
+		if es != test.out {
+			t.Errorf("\nExpected: %s\nGot:      %s", test.out, es)
+		}
 	}
 }

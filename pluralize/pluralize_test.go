@@ -5,11 +5,9 @@ import (
 	"testing"
 
 	"github.com/hgsigner/stringfy/pluralize"
-	"github.com/stretchr/testify/assert"
 )
 
 func Test_Plural(t *testing.T) {
-	a := assert.New(t)
 
 	tests := []struct {
 		count     int
@@ -247,13 +245,15 @@ func Test_Plural(t *testing.T) {
 		},
 	}
 
-	for _, t := range tests {
+	for _, test := range tests {
 		p := pluralize.New()
-		if t.addPlural {
-			p.Options(pluralize.AddPlural(t.plural))
+		if test.addPlural {
+			p.Options(pluralize.AddPlural(test.plural))
 		}
-		pf := p.Perform(t.count, t.singular)
-		a.Equal(t.out, pf)
+		pf := p.Perform(test.count, test.singular)
+		if pf != test.out {
+			t.Errorf("\nExpected: %s\nGot:      %s", test.out, pf)
+		}
 	}
 }
 

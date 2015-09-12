@@ -1,13 +1,12 @@
-package underscore
+package underscore_test
 
 import (
 	"testing"
 
-	"github.com/stretchr/testify/assert"
+	"github.com/hgsigner/stringfy/underscore"
 )
 
 func Test_Undercore(t *testing.T) {
-	a := assert.New(t)
 
 	tests := []struct {
 		in, out string
@@ -21,8 +20,11 @@ func Test_Undercore(t *testing.T) {
 		{in: "São França Ávido", out: "sao_franca_avido"},
 	}
 
-	for _, t := range tests {
-		a.Equal(t.out, PerformOn(t.in))
+	for _, test := range tests {
+		und := underscore.PerformOn(test.in)
+		if und != test.out {
+			t.Errorf("\nExpected: %s\nGot:      %s", test.out, und)
+		}
 	}
 
 }
