@@ -4,11 +4,9 @@ import (
 	"testing"
 
 	"github.com/hgsigner/stringfy/camelcase"
-	"github.com/stretchr/testify/assert"
 )
 
 func Test(t *testing.T) {
-	a := assert.New(t)
 
 	tests := []struct {
 		in, out string
@@ -20,8 +18,10 @@ func Test(t *testing.T) {
 		{in: "São Ñino França Ávido Caça", out: "SaoNinoFrancaAvidoCaca"},
 	}
 
-	for _, t := range tests {
-		cc := camelcase.PerformOn(t.in)
-		a.Equal(t.out, cc)
+	for _, test := range tests {
+		cc := camelcase.PerformOn(test.in)
+		if cc != test.out {
+			t.Errorf("\nExpected: %s\nGot:      %s", test.out, cc)
+		}
 	}
 }
