@@ -17,6 +17,7 @@ func Test(t *testing.T) {
 		{in: "fizz_buzz_bazz", out: "FizzBuzzBazz"},
 		{in: "fizz-buzz-bazz", out: "FizzBuzzBazz"},
 		{in: "Fizz Buzz Bazz", out: "FizzBuzzBazz"},
+		{in: "São Ñino França Ávido Caça", out: "SaoNinoFrancaAvidoCaca"},
 	}
 
 	for _, t := range tests {

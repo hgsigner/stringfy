@@ -4,23 +4,29 @@ import (
 	"fmt"
 	"regexp"
 	"strings"
+
+	"github.com/hgsigner/stringfy/escaper"
 )
 
+// It performs the camelcase on a given word
 func PerformOn(st string) string {
 
+	lstring := strings.ToLower(st)
+
 	reg := regexp.MustCompile("[_-]")
-	subWord := reg.ReplaceAllString(st, " ")
+	subWord := reg.ReplaceAllString(lstring, " ")
 	splitWord := strings.Split(subWord, " ")
 
-	casedSilice := make([]string, 0)
+	casedSlice := make([]string, 0)
 	for _, w := range splitWord {
 		if w != "" {
-			nw := fmt.Sprintf("%s%s", strings.ToUpper(string(w[0])), string(w[1:len(w)]))
-			casedSilice = append(casedSilice, nw)
+			rword := []rune(w)
+			nw := fmt.Sprintf("%s%s", strings.ToUpper(string(rword[0])), string(rword[1:len(rword)]))
+			enw := escaper.PerformOn(string(nw))
+			casedSlice = append(casedSlice, enw)
 		}
 	}
-	sj := strings.Join(casedSilice, "")
+	sj := strings.Join(casedSlice, "")
 
-	return string(
-		sj)
+	return string(sj)
 }
