@@ -1,11 +1,17 @@
 //Simple string manipulation for Go.
+// E.g. São Paulo => Sao Paulo
+//
+// Example of usage:
+//
+//  package main
+//
+//  import (
+//    "fmt"
+//    "github.com/hgsigner/stringfy"
+//  )
+//
+//  func main() {
+//    es := stringfy.Escape("São Paulo")
+//    fmt.Prinln(es) // Sao Paulo
+//  }
 package stringfy
-
-//Importing only for improving docs.
-import (
-	_ "github.com/hgsigner/stringfy/camelcase"
-	_ "github.com/hgsigner/stringfy/escaper"
-	_ "github.com/hgsigner/stringfy/parameterize"
-	_ "github.com/hgsigner/stringfy/pluralize"
-	_ "github.com/hgsigner/stringfy/underscore"
-)

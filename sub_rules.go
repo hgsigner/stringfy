@@ -1,4 +1,4 @@
-package escaper
+package stringfy
 
 var rules = map[string]string{
 	"À": "A",
