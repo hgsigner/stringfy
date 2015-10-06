@@ -1,12 +1,12 @@
-package camelcase_test
+package stringfy_test
 
 import (
 	"testing"
 
-	"github.com/hgsigner/stringfy/camelcase"
+	"github.com/hgsigner/stringfy"
 )
 
-func Test(t *testing.T) {
+func Test_CamelCase(t *testing.T) {
 
 	tests := []struct {
 		in, out string
@@ -19,7 +19,7 @@ func Test(t *testing.T) {
 	}
 
 	for _, test := range tests {
-		cc := camelcase.PerformOn(test.in)
+		cc := stringfy.CamelCase(test.in)
 		if cc != test.out {
 			t.Errorf("\nExpected: %s\nGot:      %s", test.out, cc)
 		}

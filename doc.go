@@ -1,5 +1,4 @@
 //Simple string manipulation for Go.
-// E.g. São Paulo => Sao Paulo
 //
 // Example of usage:
 //
@@ -13,5 +12,8 @@
 //  func main() {
 //    es := stringfy.Escape("São Paulo")
 //    fmt.Prinln(es) // Sao Paulo
+//
+//    cc := stringfy.CamelCase("fizz_buzz_bazz")
+//    fmt.Prinln(cc) // FizzBuzzBazz
 //  }
 package stringfy
