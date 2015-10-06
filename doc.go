@@ -19,7 +19,11 @@
 //    un := stringfy.Parameterize("São Paulo")
 //    fmt.Prinln(un) // sao-paulo
 //
-//    un := underscore.PerformOn("São Paulo")
+//    un := stringfy.Underscore("São Paulo")
 //    fmt.Prinln(un) // sao_paulo
+//
+//    p := stringfy.NewPlural()
+//    p.Perform(2, "octopus")
+//    fmt.Println(p) // 2 octopi
 //  }
 package stringfy

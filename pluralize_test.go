@@ -1,10 +1,10 @@
-package pluralize_test
+package stringfy_test
 
 import (
 	"fmt"
 	"testing"
 
-	"github.com/hgsigner/stringfy/pluralize"
+	"github.com/hgsigner/stringfy"
 )
 
 func Test_Plural(t *testing.T) {
@@ -246,9 +246,9 @@ func Test_Plural(t *testing.T) {
 	}
 
 	for _, test := range tests {
-		p := pluralize.New()
+		p := stringfy.NewPlural()
 		if test.addPlural {
-			p.Options(pluralize.AddPlural(test.plural))
+			p.Options(stringfy.AddPlural(test.plural))
 		}
 		pf := p.Perform(test.count, test.singular)
 		if pf != test.out {
@@ -257,19 +257,19 @@ func Test_Plural(t *testing.T) {
 	}
 }
 
-func ExampleNew() {
-	p1 := pluralize.New()
+func ExampleNewPlural() {
+	p1 := stringfy.NewPlural()
 	fmt.Println(p1.Perform(2, "octopus"))
 
-	p2 := pluralize.New()
+	p2 := stringfy.NewPlural()
 	fmt.Println(p2.Perform(2, "post"))
 
-	p3 := pluralize.New()
+	p3 := stringfy.NewPlural()
 	fmt.Println(p3.Perform(2, "jeans"))
 
 	//Custom plural
-	pc := pluralize.New()
-	pc.Options(pluralize.AddPlural("boatys"))
+	pc := stringfy.NewPlural()
+	pc.Options(stringfy.AddPlural("boatys"))
 	fmt.Println(pc.Perform(2, "boat"))
 	// Output:
 	// 2 octopi

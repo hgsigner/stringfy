@@ -1,4 +1,4 @@
-package pluralize
+package stringfy
 
 import (
 	"fmt"
@@ -40,7 +40,7 @@ func (ps *PluralSet) Perform(count int, singular string) string {
 }
 
 //It initializes the PluralSet struct
-func New() *PluralSet {
+func NewPlural() *PluralSet {
 	return &PluralSet{}
 }
 
@@ -55,21 +55,24 @@ func pluralize_word(w string) string {
 
 	var word string
 
-	//Checks if it is uncountable
+	// Checks if it is uncountable
 	for _, unc := range uncountable_list {
 		if w == unc {
 			return unc
 		}
 	}
 
-	//Check if it is in the irregular_rules
+	// Check if it is in the irregular_rules
 	for k, v := range irregular_rules {
 		if w == k {
 			return v
 		}
 	}
 
-	//Iterates through plural_rules
+	// Iterates over plural_rules map
+	// and look for the word's plural in it.
+	// If it find the plural, it appends to the
+	// regex_matches_slice [][]string
 	regex_matches_slice := make([][]string, 0)
 	for reg, replacer := range plural_rules {
 		re := regexp.MustCompile(reg)
@@ -80,7 +83,7 @@ func pluralize_word(w string) string {
 		}
 	}
 
-	//Filters if more than one regex has matched
+	// Filters if more than one regex has matched
 	switch len(regex_matches_slice) {
 	case 1:
 		re := regexp.MustCompile(regex_matches_slice[0][len(regex_matches_slice[0])-2])

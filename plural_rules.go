@@ -1,4 +1,4 @@
-package pluralize
+package stringfy
 
 var plural_rules = map[string]string{
 	`$`:                              "s",
