@@ -18,5 +18,8 @@
 //
 //    un := stringfy.Parameterize("São Paulo")
 //    fmt.Prinln(un) // sao-paulo
+//
+//    un := underscore.PerformOn("São Paulo")
+//    fmt.Prinln(un) // sao_paulo
 //  }
 package stringfy

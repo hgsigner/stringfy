@@ -1,9 +1,9 @@
-package underscore_test
+package stringfy_test
 
 import (
 	"testing"
 
-	"github.com/hgsigner/stringfy/underscore"
+	"github.com/hgsigner/stringfy"
 )
 
 func Test_Undercore(t *testing.T) {
@@ -21,7 +21,7 @@ func Test_Undercore(t *testing.T) {
 	}
 
 	for _, test := range tests {
-		und := underscore.PerformOn(test.in)
+		und := stringfy.Underscore(test.in)
 		if und != test.out {
 			t.Errorf("\nExpected: %s\nGot:      %s", test.out, und)
 		}
