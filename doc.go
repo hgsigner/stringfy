@@ -15,5 +15,8 @@
 //
 //    cc := stringfy.CamelCase("fizz_buzz_bazz")
 //    fmt.Prinln(cc) // FizzBuzzBazz
+//
+//    un := stringfy.Parameterize("São Paulo")
+//    fmt.Prinln(un) // sao-paulo
 //  }
 package stringfy

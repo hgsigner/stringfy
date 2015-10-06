@@ -1,9 +1,9 @@
-package parameterize_test
+package stringfy_test
 
 import (
 	"testing"
 
-	"github.com/hgsigner/stringfy/parameterize"
+	"github.com/hgsigner/stringfy"
 )
 
 func Test_Parameterize(t *testing.T) {
@@ -21,7 +21,7 @@ func Test_Parameterize(t *testing.T) {
 	}
 
 	for _, test := range tests {
-		par := parameterize.PerformOn(test.in)
+		par := stringfy.Parameterize(test.in)
 		if par != test.out {
 			t.Errorf("\nExpected: %s\nGot:      %s", test.out, par)
 		}
