@@ -39,11 +39,12 @@ func (ps *PluralSet) Perform(count int, singular string) string {
 	return fmt.Sprintf("%d %s", count, plural_word)
 }
 
-//It initializes the PluralSet struct
+// Initializes the PluralSet struct
 func NewPlural() *PluralSet {
 	return &PluralSet{}
 }
 
+// Adds custom plural to the word
 func AddPlural(pl string) option {
 	return func(ps *PluralSet) {
 		ps.isPluralSet = true

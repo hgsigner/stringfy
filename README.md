@@ -9,91 +9,39 @@ Stringfy is a collection of string manipulation packages for GO.
 $ go get github.com/hgsigner/stringfy
 ```
 
-##escaper
+##Usage:
 
 ```go
 package main
 
 import (
-  "fmt"
-  "github.com/hgsigner/stringfy/escaper"
+  	"fmt"
+	"github.com/hgsigner/stringfy"
 )
 
 func main() {
-  es := escaper.PerformOn("São Paulo")
-  fmt.Prinln(es) // Sao Paulo
-}
-```
+	es := stringfy.Escape("São Paulo")
+  	fmt.Prinln(es) // Sao Paulo
 
-##underscore:
+  	cc := stringfy.CamelCase("fizz_buzz_bazz")
+  	fmt.Prinln(cc) // FizzBuzzBazz
 
-```go
-package main
+	un := stringfy.Parameterize("São Paulo")
+ 	fmt.Prinln(un) // sao-paulo
 
-import( 
-	"fmt"
-	"github.com/hgsigner/stringfy/underscore"
-)
-
-func main() {
-	un := underscore.PerformOn("São Paulo")
-	fmt.Println(un) // sao_paulo
-}
-```
-
-##parameterize:
-
-```go
-package main
-
-import( 
-  "fmt"
-  "github.com/hgsigner/stringfy/parameterize"
-)
-
-func main() {
-  pr := parameterize.PerformOn("São Paulo")
-  fmt.Println(pr) // sao-paulo
-}
-```
-
-##pluralize:
-
-```go
-package main
-
-import( 
-	"fmt"
-	"github.com/hgsigner/stringfy/pluralize"
-)
-
-func main() {
-  //Default plural
-  p1 := pluralize.New()
-  p1.Perform(2, "octopus")
-  fmt.Println(p1) // 2 octopi
-  
-  //Custom plural
-  p2 := pluralize.New()
-  p2.Options(pluralize.AddPlural("boatys"))
-  p2.Perform(2, "boat")
-  fmt.Println(p2) // 2 boatys
-}
-```
-
-##camelcase
-
-```go
-package main
-
-import (
- "fmt"
- "github.com/hgsigner/stringfy/camelcase"
-)
-
-func main() {
- cc := camelcase.PerformOn("fizz_buzz_bazz")
- fmt.Prinln(cc) // FizzBuzzBazz
+ 	un := stringfy.Underscore("São Paulo")
+ 	fmt.Prinln(un) // sao_paulo
+ 	
+ 	// Default plural
+	pl1 := stringfy.NewPlural()
+ 	pl1.Perform(2, "octopus")
+ 	fmt.Println(pl1) // 2 octopi
+ 	
+ 	// Custom plural
+ 	pl2 := stringfy.NewPlural()
+ 	pl2.Options(stringfy.AddPlural("timesz"))
+ 	pl2.Perform(2, "timey")
+ 	fmt.Println(pl2) // 2 timesz
 }
 ```
 
