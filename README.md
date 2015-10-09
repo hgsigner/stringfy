@@ -26,8 +26,8 @@ func main() {
   	cc := stringfy.CamelCase("fizz_buzz_bazz")
   	fmt.Prinln(cc) // FizzBuzzBazz
 
-	un := stringfy.Parameterize("São Paulo")
- 	fmt.Prinln(un) // sao-paulo
+	pm := stringfy.Parameterize("São Paulo")
+ 	fmt.Prinln(pm) // sao-paulo
 
  	un := stringfy.Underscore("São Paulo")
  	fmt.Prinln(un) // sao_paulo
