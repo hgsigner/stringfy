@@ -1,6 +1,6 @@
 #Stringfy [![Build Status](https://travis-ci.org/hgsigner/stringfy.svg?branch=master)](https://travis-ci.org/hgsigner/stringfy) [![GoDoc](https://godoc.org/github.com/hgsigner/stringfy?status.svg)](https://godoc.org/github.com/hgsigner/stringfy)
 
-Stringfy is a collection of string manipulation packages for GO.
+Stringfy is a string manipulation package for GO.
 - - -
 
 ##Install:
@@ -49,4 +49,4 @@ func main() {
 For more information, please refer to the [docs.](https://godoc.org/github.com/hgsigner/stringfy) **Work in progress. More packages to come.**
 - - -
 ##Licensing
-You can use or modify it to meet your needs.
+This package is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
