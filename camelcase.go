@@ -19,7 +19,7 @@ func CamelCase(st string) string {
 	subWord := reg.ReplaceAllString(lstring, " ")
 	splitWord := strings.Split(subWord, " ")
 
-	// Iterates over the splited string
+	// Iterates over the splitted string
 	// ensuring the the word is not blank.
 	// Converts the word to a slice of rune,
 	// upercases the first letter and escapes

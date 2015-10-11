@@ -12,7 +12,7 @@ func Parameterize(s string) string {
 
 	// Tests if the lentgth of the trimmed lowered string
 	// is equal to 1. If so, it returns the first item from
-	// the slice. If not, it will join the splited lowered case
+	// the slice. If not, it will join the splitted lowered case
 	// with - and will return it
 	if len(ssplit) == 1 {
 		return ssplit[0]
