@@ -38,6 +38,35 @@ func Test_Truncate(t *testing.T) {
 			omission:    "... (continued)",
 			out:         "Lorem ipsum dol... (continued)",
 		},
+		{
+			in:           "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+			addLength:    true,
+			length:       13,
+			addSeparator: true,
+			separator:    " ",
+			out:          "Lorem ipsum...",
+		},
+
+		{
+			in:           "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+			addLength:    true,
+			length:       13,
+			addSeparator: true,
+			separator:    " ",
+			addOmission:  true,
+			omission:     "... (continued) ...",
+			out:          "Lorem ipsum... (continued) ...",
+		},
+		{
+			in:           "Lorem ipsum dolor sit amet, c",
+			addLength:    true,
+			length:       13,
+			addSeparator: true,
+			separator:    " ",
+			addOmission:  true,
+			omission:     "... (continued) ...",
+			out:          "Lorem ipsum dolor sit amet, c",
+		},
 	}
 
 	for _, test := range tests {

@@ -1,6 +1,13 @@
 package stringfy
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
+
+const (
+	truncDefaultValue = 30
+)
 
 type Truncater struct {
 	length    int
@@ -16,27 +23,39 @@ func (t *Truncater) Options(options ...optTruncate) {
 	}
 }
 
+// ApplicationController.helpers.truncate("Once upon a time in a world far far away", length: 17, separator: ' ')
+// # => "Once upon a..."
+
 func (t *Truncater) Perform(text string) string {
 	if len(text) <= t.length {
 		return text
 	}
 
-	var final string
+	ol := len(t.omission)
 
-	switch t.separator {
-	case "":
-		ol := len(t.omission)
-		tt := text[:t.length-ol]
-		final = fmt.Sprintf("%s%s", tt, t.omission)
+	if t.separator == "" {
+		return fmt.Sprintf("%s%s", text[:t.length-ol], t.omission)
 	}
 
-	return final
+	trimT := strings.Trim(text[:t.length], t.separator)
+	lIndex := strings.LastIndex(trimT, t.separator)
+
+	if len(trimT) <= len(t.omission) {
+		if len(text) <= truncDefaultValue {
+			return text
+		}
+
+		return fmt.Sprintf("%s%s", text[:truncDefaultValue-ol], t.omission)
+	}
+
+	return fmt.Sprintf("%s%s", trimT[:lIndex], t.omission)
+
 }
 
 // Creates a new instace of the Truncater struct
 // if its defaults.
 func NewTruncate() *Truncater {
-	return &Truncater{30, "...", ""}
+	return &Truncater{truncDefaultValue, "...", ""}
 }
 
 func AddLength(l int) optTruncate {
