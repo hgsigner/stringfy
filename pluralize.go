@@ -11,9 +11,9 @@ type PluralSet struct {
 	plural      string
 }
 
-type option func(*PluralSet)
+type optPlural func(*PluralSet)
 
-func (ps *PluralSet) Options(options ...option) {
+func (ps *PluralSet) Options(options ...optPlural) {
 	for _, opt := range options {
 		opt(ps)
 	}
@@ -45,7 +45,7 @@ func NewPlural() *PluralSet {
 }
 
 // Adds custom plural to the word
-func AddPlural(pl string) option {
+func AddPlural(pl string) optPlural {
 	return func(ps *PluralSet) {
 		ps.isPluralSet = true
 		ps.plural = pl
