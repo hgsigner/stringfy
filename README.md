@@ -49,10 +49,14 @@ func main() {
  	tr1 := stringfy.NewTruncate()
  	tr1.Perform("Lorem ipsum dolor sit amet, consectetur adipiscing elit.") // Lorem ipsum dolor sit amet,...
 
- 	// Default truncate
+ 	// Custom truncate
  	tr2 := stringfy.NewTruncate()
- 	tr2.Options(stringfy.AddLength(13), stringfy.AddSeparator(" "))
- 	tr2.Perform("Lorem ipsum dolor sit amet, consectetur adipiscing elit.") // Lorem ipsum...
+ 	tr2.Options(stringfy.AddLength(17))
+ 	tr2.Perform("Lorem ipsum dolor sit amet, consectetur adipiscing elit.") // Lorem ipsum do...
+
+ 	tr3 := stringfy.NewTruncate()
+ 	tr3.Options(stringfy.AddLength(13), stringfy.AddSeparator(" "))
+ 	tr3.Perform("Lorem ipsum dolor sit amet, consectetur adipiscing elit.") // Lorem ipsum...
 }
 ```
 
