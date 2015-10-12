@@ -21,7 +21,7 @@ import (
 
 func main() {
 	es := stringfy.Escape("São Paulo")
-  fmt.Prinln(es) // Sao Paulo
+ 	fmt.Prinln(es) // Sao Paulo
 
   cc := stringfy.CamelCase("fizz_buzz_bazz")
   fmt.Prinln(cc) // FizzBuzzBazz
@@ -40,10 +40,6 @@ func main() {
  	pl2 := stringfy.NewPlural()
  	pl2.Options(stringfy.AddPlural("timesz"))
  	fmt.Println(pl2.Perform(2, "timey")) // 2 timesz
-
- 	// Default truncate
- 	tr1 := stringfy.NewTruncate()
- 	tr1.Perform(test.in)
 
  	// Default truncate
  	tr1 := stringfy.NewTruncate()
