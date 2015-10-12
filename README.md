@@ -21,10 +21,10 @@ import (
 
 func main() {
 	es := stringfy.Escape("São Paulo")
-  	fmt.Prinln(es) // Sao Paulo
+  fmt.Prinln(es) // Sao Paulo
 
-  	cc := stringfy.CamelCase("fizz_buzz_bazz")
-  	fmt.Prinln(cc) // FizzBuzzBazz
+  cc := stringfy.CamelCase("fizz_buzz_bazz")
+  fmt.Prinln(cc) // FizzBuzzBazz
 
 	pm := stringfy.Parameterize("São Paulo")
  	fmt.Prinln(pm) // sao-paulo
@@ -34,15 +34,37 @@ func main() {
  	
  	// Default plural
 	pl1 := stringfy.NewPlural()
- 	pl1.Perform(2, "octopus")
- 	fmt.Println(pl1) // 2 octopi
+ 	fmt.Println(pl1.Perform(2, "octopus")) // 2 octopi
  	
  	// Custom plural
  	pl2 := stringfy.NewPlural()
  	pl2.Options(stringfy.AddPlural("timesz"))
- 	pl2.Perform(2, "timey")
- 	fmt.Println(pl2) // 2 timesz
+ 	fmt.Println(pl2.Perform(2, "timey")) // 2 timesz
+
+ 	// Default truncate
+ 	tr1 := stringfy.NewTruncate()
+ 	tr1.Perform(test.in)
+
+ 	// Default truncate
+ 	tr1 := stringfy.NewTruncate()
+ 	tr1.Perform("Lorem ipsum dolor sit amet, consectetur adipiscing elit.") // Lorem ipsum dolor sit amet,...
+
+ 	// Default truncate
+ 	tr2 := stringfy.NewTruncate()
+ 	tr2.Options(stringfy.AddLength(13), stringfy.AddSeparator(" "))
+ 	tr2.Perform("Lorem ipsum dolor sit amet, consectetur adipiscing elit.") // Lorem ipsum...
 }
+```
+
+##Options
+**Truncate**
+
+```go
+stringfy.AddLength(int)       // Default: 30
+
+stringfy.AddOmission(string)  // Default: "..."
+
+stringfy.AddSeparator(string) // Default: ""
 ```
 
 - - -
