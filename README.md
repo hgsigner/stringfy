@@ -37,7 +37,8 @@ import (
 )
 
 func main() {
-	cc := stringfy.CamelCase("fizz_buzz_bazz")  	fmt.Prinln(cc) // FizzBuzzBazz
+	cc := stringfy.CamelCase("fizz_buzz_bazz")  
+	fmt.Prinln(cc) // FizzBuzzBazz
 }
 ```
 - - -
