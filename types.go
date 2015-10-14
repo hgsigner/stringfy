@@ -10,8 +10,8 @@ type separatorer interface {
 	setSeparator(string)
 }
 
-type radiouser interface {
-	setRadious(int)
+type radiuser interface {
+	setRadius(int)
 }
 
 type lengther interface {
@@ -22,7 +22,7 @@ type lengther interface {
 
 type omissionOption func(omissioner)
 type separatorOption func(separatorer)
-type radiousOption func(radiouser)
+type radiusOption func(radiuser)
 type lengthOption func(lengther)
 
 // Adds a custom omission
@@ -40,9 +40,9 @@ func AddSeparator(sep string) separatorOption {
 }
 
 // Adds a custom separator
-func AddRadious(rad int) radiousOption {
-	return func(obj radiouser) {
-		obj.setRadious(rad)
+func AddRadius(rad int) radiusOption {
+	return func(obj radiuser) {
+		obj.setRadius(rad)
 	}
 }
 

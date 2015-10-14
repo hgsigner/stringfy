@@ -7,11 +7,11 @@ import (
 )
 
 const (
-	defaultExcerptRadious = 100
+	defaultExcerptRadius = 100
 )
 
 type Excerpter struct {
-	radious   int
+	radius    int
 	separator string
 	omission  string
 }
@@ -19,8 +19,8 @@ type Excerpter struct {
 func (ex *Excerpter) Options(options ...interface{}) {
 	for _, opt := range options {
 		switch opt.(type) {
-		case radiousOption:
-			opt.(radiousOption)(ex)
+		case radiusOption:
+			opt.(radiusOption)(ex)
 		case omissionOption:
 			opt.(omissionOption)(ex)
 		case separatorOption:
@@ -30,7 +30,7 @@ func (ex *Excerpter) Options(options ...interface{}) {
 }
 
 // Set fields
-func (ex *Excerpter) setRadious(r int)        { ex.radious = r }
+func (ex *Excerpter) setRadius(r int)         { ex.radius = r }
 func (ex *Excerpter) setOmission(om string)   { ex.omission = om }
 func (ex *Excerpter) setSeparator(sep string) { ex.separator = sep }
 
@@ -68,12 +68,20 @@ func (ex *Excerpter) Perform(text, phrase string) string {
 			return text
 		}
 
-		leftRad := pIndex[0][0] - ex.radious
+		// Calculates the left radios index.
+		// If its less of equal to the length of
+		// the omission, the left radios index will
+		// equal to 0.
+		leftRad := pIndex[0][0] - ex.radius
 		if leftRad <= ol {
 			leftRad = 0
 		}
 
-		rightRad := pIndex[0][1] + ex.radious
+		// Calculates the right radios index.
+		// If its greater than the subtraction of the
+		// text length by the omission length,
+		// the radius index will equal to 0.
+		rightRad := pIndex[0][1] + ex.radius
 		if rightRad > (tl - ol) {
 			rightRad = tl
 		}
@@ -89,12 +97,12 @@ func (ex *Excerpter) Perform(text, phrase string) string {
 		rangeSlice := make([]int, 0)
 		for i, word := range sText {
 			if word == phrase {
-				leftRange := i - ex.radious
+				leftRange := i - ex.radius
 				if leftRange < 0 {
 					leftRange = 0
 				}
 
-				rightRange := (i + ex.radious) + 1
+				rightRange := (i + ex.radius) + 1
 				if rightRange >= sTextLen {
 					rightRange = sTextLen
 				}
@@ -121,5 +129,5 @@ func (ex *Excerpter) Perform(text, phrase string) string {
 // Creates a new instace of the Excerpter struct
 // if its defaults.
 func NewExcerpt() *Excerpter {
-	return &Excerpter{defaultExcerptRadious, "", "..."}
+	return &Excerpter{defaultExcerptRadius, "", "..."}
 }

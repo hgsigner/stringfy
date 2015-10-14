@@ -93,7 +93,7 @@ func Test_Excerpt(t *testing.T) {
 		exc := stringfy.NewExcerpt()
 
 		if test.addRadious {
-			exc.Options(stringfy.AddRadious(test.radious))
+			exc.Options(stringfy.AddRadius(test.radious))
 		}
 
 		if test.addOmission {
@@ -113,7 +113,7 @@ func Test_Excerpt(t *testing.T) {
 
 func BenchmarkExcerptPerform_Radious(b *testing.B) {
 	exc := stringfy.NewExcerpt()
-	exc.Options(stringfy.AddRadious(5))
+	exc.Options(stringfy.AddRadius(5))
 	for i := 0; i < b.N; i++ {
 		exc.Perform(text, "to")
 	}
@@ -121,7 +121,7 @@ func BenchmarkExcerptPerform_Radious(b *testing.B) {
 
 func BenchmarkExcerptPerform_RadiosSeparator(b *testing.B) {
 	exc := stringfy.NewExcerpt()
-	exc.Options(stringfy.AddRadious(1), stringfy.AddSeparator(" "))
+	exc.Options(stringfy.AddRadius(1), stringfy.AddSeparator(" "))
 	for i := 0; i < b.N; i++ {
 		exc.Perform(text, "popular")
 	}
@@ -129,7 +129,7 @@ func BenchmarkExcerptPerform_RadiosSeparator(b *testing.B) {
 
 func BenchmarkExcerptPerform_RadiosOmission(b *testing.B) {
 	exc := stringfy.NewExcerpt()
-	exc.Options(stringfy.AddRadious(5), stringfy.AddOmission("(...)"))
+	exc.Options(stringfy.AddRadius(5), stringfy.AddOmission("(...)"))
 	for i := 0; i < b.N; i++ {
 		exc.Perform(text, "sit")
 	}
