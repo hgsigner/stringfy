@@ -3,6 +3,7 @@ package stringfy
 import (
 	"fmt"
 	"regexp"
+	"strings"
 )
 
 const (
@@ -40,17 +41,18 @@ func (ex *Excerpter) Perform(text, phrase string) string {
 	tl := len(text)
 	ol := len(ex.omission)
 
-	// Looks for the first occurrence of 'phrase'
-	// in the text and return its index boundaries
-	reg := regexp.MustCompile(phrase)
-	pIndex := reg.FindAllStringIndex(text, 1)
-	if len(pIndex) == 0 {
-		return text
-	}
-
 	var radText string
 
 	if ex.separator == "" {
+
+		// Looks for the first occurrence of 'phrase'
+		// in the text and return its index boundaries
+		reg := regexp.MustCompile(phrase)
+		pIndex := reg.FindAllStringIndex(text, 1)
+		if len(pIndex) == 0 {
+			return text
+		}
+
 		leftRad := pIndex[0][0] - ex.radious
 		if leftRad <= ol {
 			leftRad = 0
@@ -70,6 +72,44 @@ func (ex *Excerpter) Perform(text, phrase string) string {
 		if rightRad != tl {
 			radText = fmt.Sprintf("%s%s", radText, ex.omission)
 		}
+	} else {
+
+		rawText := strings.Replace(text, "\n", "", -1)
+		sText := strings.Split(rawText, ex.separator)
+		sTextLen := len(sText)
+
+		rangeSlice := make([]int, 0)
+		for i, word := range sText {
+			if word == phrase {
+				leftRange := i - ex.radious
+				if leftRange < 0 {
+					leftRange = 0
+				}
+				rangeSlice = append(rangeSlice, leftRange)
+
+				rightRange := (i + ex.radious) + 1
+				if rightRange >= sTextLen {
+					rightRange = sTextLen
+				}
+				rangeSlice = append(rangeSlice, rightRange)
+
+				break
+			}
+		}
+
+		if len(rangeSlice) > 0 {
+			radText = strings.Join(sText[rangeSlice[0]:rangeSlice[1]], " ")
+			if rangeSlice[0] > 0 {
+				radText = fmt.Sprintf("%s%s", ex.omission, radText)
+			}
+
+			if rangeSlice[1] != sTextLen {
+				radText = fmt.Sprintf("%s%s", radText, ex.omission)
+			}
+		} else {
+			radText = text
+		}
+
 	}
 
 	return radText
