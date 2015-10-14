@@ -23,6 +23,13 @@ func Test_Excerpt(t *testing.T) {
 	}{
 		{
 			text:       text1,
+			phrase:     "boo",
+			addRadious: true,
+			radious:    5,
+			out:        text1,
+		},
+		{
+			text:       text1,
 			phrase:     "sit",
 			addRadious: true,
 			radious:    5,
@@ -34,6 +41,31 @@ func Test_Excerpt(t *testing.T) {
 			addRadious: true,
 			radious:    5,
 			out:        "Lorem ipsu...",
+		},
+		{
+			text:       text1,
+			phrase:     "elit",
+			addRadious: true,
+			radious:    5,
+			out:        "...cing elit.",
+		},
+		{
+			text:        text1,
+			phrase:      "sit",
+			addRadious:  true,
+			radious:     5,
+			addOmission: true,
+			omission:    "(...)",
+			out:         "(...)olor sit amet(...)",
+		},
+		{
+			text:         text1,
+			phrase:       "dolor",
+			addRadious:   true,
+			radious:      1,
+			addSeparator: true,
+			separator:    " ",
+			out:          "...ipsum dolor sit...",
 		},
 	}
 
