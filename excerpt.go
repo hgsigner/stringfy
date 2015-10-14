@@ -34,6 +34,21 @@ func (ex *Excerpter) setRadious(r int)        { ex.radious = r }
 func (ex *Excerpter) setOmission(om string)   { ex.omission = om }
 func (ex *Excerpter) setSeparator(sep string) { ex.separator = sep }
 
+// Test text boundaries in order to add the omission
+func (ex *Excerpter) addOmissionToText(text string, max int, textBnd []int) string {
+	subText := text
+
+	if textBnd[0] > 0 {
+		subText = fmt.Sprintf("%s%s", ex.omission, subText)
+	}
+
+	if textBnd[1] != max {
+		subText = fmt.Sprintf("%s%s", subText, ex.omission)
+	}
+
+	return subText
+}
+
 // Performs excerpt of a given text.
 // Receices a text and a phrase.
 func (ex *Excerpter) Perform(text, phrase string) string {
@@ -64,14 +79,7 @@ func (ex *Excerpter) Perform(text, phrase string) string {
 		}
 
 		radText = text[leftRad:rightRad]
-
-		if leftRad > 0 {
-			radText = fmt.Sprintf("%s%s", ex.omission, radText)
-		}
-
-		if rightRad != tl {
-			radText = fmt.Sprintf("%s%s", radText, ex.omission)
-		}
+		radText = ex.addOmissionToText(radText, tl, []int{leftRad, rightRad})
 	} else {
 
 		rawText := strings.Replace(text, "\n", "", -1)
@@ -85,27 +93,22 @@ func (ex *Excerpter) Perform(text, phrase string) string {
 				if leftRange < 0 {
 					leftRange = 0
 				}
-				rangeSlice = append(rangeSlice, leftRange)
 
 				rightRange := (i + ex.radious) + 1
 				if rightRange >= sTextLen {
 					rightRange = sTextLen
 				}
-				rangeSlice = append(rangeSlice, rightRange)
+
+				rangeSlice = append(rangeSlice, leftRange, rightRange)
 
 				break
 			}
 		}
 
+		// Tests if phrase was found in the text.
 		if len(rangeSlice) > 0 {
 			radText = strings.Join(sText[rangeSlice[0]:rangeSlice[1]], " ")
-			if rangeSlice[0] > 0 {
-				radText = fmt.Sprintf("%s%s", ex.omission, radText)
-			}
-
-			if rangeSlice[1] != sTextLen {
-				radText = fmt.Sprintf("%s%s", radText, ex.omission)
-			}
+			radText = ex.addOmissionToText(radText, sTextLen, []int{rangeSlice[0], rangeSlice[1]})
 		} else {
 			radText = text
 		}

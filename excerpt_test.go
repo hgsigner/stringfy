@@ -8,8 +8,7 @@ import (
 
 func Test_Excerpt(t *testing.T) {
 
-	text1 := "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-	text2 := `Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+	text := `Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
 
 The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.`
 
@@ -25,35 +24,35 @@ The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for t
 		out          string
 	}{
 		{
-			text:       text1,
-			phrase:     "boo",
+			text:       text,
+			phrase:     "bhtk",
 			addRadious: true,
 			radious:    5,
-			out:        text1,
+			out:        text,
 		},
 		{
-			text:       text1,
-			phrase:     "sit",
+			text:       text,
+			phrase:     "to",
 			addRadious: true,
 			radious:    5,
-			out:        "...olor sit amet...",
+			out:        "...rary to popu...",
 		},
 		{
-			text:       text1,
-			phrase:     "em",
+			text:       text,
+			phrase:     "tra",
 			addRadious: true,
 			radious:    5,
-			out:        "Lorem ipsu...",
+			out:        "Contrary to...",
 		},
 		{
-			text:       text1,
-			phrase:     "elit",
+			text:       text,
+			phrase:     "Rackham",
 			addRadious: true,
 			radious:    5,
-			out:        "...cing elit.",
+			out:        "...y H. Rackham.",
 		},
 		{
-			text:        text1,
+			text:        text,
 			phrase:      "sit",
 			addRadious:  true,
 			radious:     5,
@@ -62,7 +61,7 @@ The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for t
 			out:         "(...)olor sit amet(...)",
 		},
 		{
-			text:         text2,
+			text:         text,
 			phrase:       "popular",
 			addRadious:   true,
 			radious:      1,
@@ -71,13 +70,22 @@ The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for t
 			out:          "...to popular belief,...",
 		},
 		{
-			text:         text2,
-			phrase:       "boo",
+			text:         text,
+			phrase:       "to",
+			addRadious:   true,
+			radious:      2,
+			addSeparator: true,
+			separator:    " ",
+			out:          "Contrary to popular belief,...",
+		},
+		{
+			text:         text,
+			phrase:       "bhtk",
 			addRadious:   true,
 			radious:      1,
 			addSeparator: true,
 			separator:    " ",
-			out:          text2,
+			out:          text,
 		},
 	}
 
