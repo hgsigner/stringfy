@@ -15,13 +15,23 @@ type Truncater struct {
 	separator string
 }
 
-type optTruncate func(*Truncater)
-
-func (t *Truncater) Options(options ...optTruncate) {
+func (t *Truncater) Options(options ...interface{}) {
 	for _, opt := range options {
-		opt(t)
+		switch opt.(type) {
+		case lengthOption:
+			opt.(lengthOption)(t)
+		case omissionOption:
+			opt.(omissionOption)(t)
+		case separatorOption:
+			opt.(separatorOption)(t)
+		}
 	}
 }
+
+// Set fields
+func (t *Truncater) setLength(l int)         { t.length = l }
+func (t *Truncater) setOmission(om string)   { t.omission = om }
+func (t *Truncater) setSeparator(sep string) { t.separator = sep }
 
 // Performs the truncation of a given text.
 func (t *Truncater) Perform(text string) string {
@@ -68,25 +78,4 @@ func (t *Truncater) Perform(text string) string {
 // if its defaults.
 func NewTruncate() *Truncater {
 	return &Truncater{truncDefaultValue, "...", ""}
-}
-
-// Adds a custom length
-func AddLength(l int) optTruncate {
-	return func(t *Truncater) {
-		t.length = l
-	}
-}
-
-// Adds a custom omission
-func AddOmission(om string) optTruncate {
-	return func(t *Truncater) {
-		t.omission = om
-	}
-}
-
-// Adds a custom separator
-func AddSeparator(sep string) optTruncate {
-	return func(t *Truncater) {
-		t.separator = sep
-	}
 }
