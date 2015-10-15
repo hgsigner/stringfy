@@ -118,7 +118,7 @@ func main() {
 stringfy.AddPlural(string)
 ```
 - - -
-###Tuncate:
+###Truncate:
 
 ```go
 package main
