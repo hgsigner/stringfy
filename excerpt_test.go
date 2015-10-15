@@ -96,6 +96,16 @@ func Test_Excerpt(t *testing.T) {
 			out:          "",
 			errorOut:     "Phrase (bhtk) not found.",
 		},
+		{
+			text:         text,
+			phrase:       "to",
+			addRadious:   true,
+			radious:      5,
+			addSeparator: true,
+			separator:    "-",
+			out:          "...rary to popu...",
+			errorOut:     "",
+		},
 	}
 
 	for _, test := range tests {
