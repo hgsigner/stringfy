@@ -54,8 +54,8 @@ func (ex *Excerpter) addOmissionToText(text string, max int, textBnd []int) stri
 // Receices a text and a phrase.
 func (ex *Excerpter) Perform(text, phrase string) (string, error) {
 
-	if ex.separator == " " && strings.ContainsAny(phrase, " ") {
-		return "", errors.New("When composing the excerpt based on words, your phrase should not contain more than one word.")
+	if strings.ContainsAny(phrase, " ") {
+		return "", errors.New("When composing the excerpt, your phrase should not contain more than one word.")
 	}
 
 	tl := len(text)

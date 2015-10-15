@@ -106,6 +106,26 @@ func Test_Excerpt(t *testing.T) {
 			out:          "...rary to popu...",
 			errorOut:     "",
 		},
+		{
+			text:         text,
+			phrase:       "to popular",
+			addRadious:   true,
+			radious:      5,
+			addSeparator: true,
+			separator:    " ",
+			out:          "",
+			errorOut:     "When composing the excerpt, your phrase should not contain more than one word.",
+		},
+		{
+			text:         text,
+			phrase:       "to popular",
+			addRadious:   true,
+			radious:      5,
+			addSeparator: true,
+			separator:    "-",
+			out:          "",
+			errorOut:     "When composing the excerpt, your phrase should not contain more than one word.",
+		},
 	}
 
 	for _, test := range tests {
