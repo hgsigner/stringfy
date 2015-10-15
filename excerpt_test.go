@@ -22,13 +22,15 @@ func Test_Excerpt(t *testing.T) {
 		separator    string
 		addSeparator bool
 		out          string
+		errorOut     string
 	}{
 		{
 			text:       text,
 			phrase:     "bhtk",
 			addRadious: true,
 			radious:    5,
-			out:        text,
+			out:        "",
+			errorOut:   "Phrase (bhtk) not found.",
 		},
 		{
 			text:       text,
@@ -36,6 +38,7 @@ func Test_Excerpt(t *testing.T) {
 			addRadious: true,
 			radious:    5,
 			out:        "...rary to popu...",
+			errorOut:   "",
 		},
 		{
 			text:       text,
@@ -43,6 +46,7 @@ func Test_Excerpt(t *testing.T) {
 			addRadious: true,
 			radious:    5,
 			out:        "Contrary to...",
+			errorOut:   "",
 		},
 		{
 			text:       text,
@@ -50,6 +54,7 @@ func Test_Excerpt(t *testing.T) {
 			addRadious: true,
 			radious:    5,
 			out:        "...y H. Rackham.",
+			errorOut:   "",
 		},
 		{
 			text:        text,
@@ -59,6 +64,7 @@ func Test_Excerpt(t *testing.T) {
 			addOmission: true,
 			omission:    "(...)",
 			out:         "(...)olor sit amet(...)",
+			errorOut:    "",
 		},
 		{
 			text:         text,
@@ -68,6 +74,7 @@ func Test_Excerpt(t *testing.T) {
 			addSeparator: true,
 			separator:    " ",
 			out:          "...to popular belief,...",
+			errorOut:     "",
 		},
 		{
 			text:         text,
@@ -77,6 +84,7 @@ func Test_Excerpt(t *testing.T) {
 			addSeparator: true,
 			separator:    " ",
 			out:          "Contrary to popular belief,...",
+			errorOut:     "",
 		},
 		{
 			text:         text,
@@ -85,7 +93,8 @@ func Test_Excerpt(t *testing.T) {
 			radious:      1,
 			addSeparator: true,
 			separator:    " ",
-			out:          text,
+			out:          "",
+			errorOut:     "Phrase (bhtk) not found.",
 		},
 	}
 
@@ -104,7 +113,13 @@ func Test_Excerpt(t *testing.T) {
 			exc.Options(stringfy.AddSeparator(test.separator))
 		}
 
-		excf := exc.Perform(test.text, test.phrase)
+		excf, err := exc.Perform(test.text, test.phrase)
+		if err != nil {
+			if err.Error() != test.errorOut {
+				t.Errorf("\nError Expected: %s\nError Got:      %s", test.errorOut, err.Error())
+			}
+		}
+
 		if excf != test.out {
 			t.Errorf("\nExpected: %s\nGot:      %s", test.out, excf)
 		}
