@@ -157,6 +157,44 @@ stringfy.AddSeparator(string) // Default: ""
 ```
 
 - - -
+###Excerpt:
+
+```go
+package main
+
+import (
+  	"fmt"
+	"github.com/hgsigner/stringfy"
+)
+
+func main() {
+	text := "Lorem ipsum dolor sit amet consectetur adipiscing elit."
+ 	
+ 	ex1 := stringfy.NewExcerpt()
+ 	ex1.Options(stringfy.AddRadius(4))
+ 	ex1.Perform(text, "sit") // ...lor sit ame...
+
+ 	ex2 := stringfy.NewExcerpt()
+ 	ex2.Options(stringfy.AddRadius(4), stringfy.AddOmission("(...)"))
+ 	ex2.Perform(text, "sit") // (...)lor sit ame(...)
+
+ 	ex3 := stringfy.NewExcerpt()
+ 	ex3.Options(stringfy.AddRadius(1), stringfy.AddSeparator(" "))
+ 	ex3.Perform(text, "sit") // ...dolor sit amet...
+}
+```
+
+###Options:
+
+```go
+stringfy.AddRadius(int)       // Default: 100
+
+stringfy.AddOmission(string)  // Default: "..."
+
+stringfy.AddSeparator(string) // Default: ""
+```
+
+- - -
 For more information, please refer to the [docs.](https://godoc.org/github.com/hgsigner/stringfy) **Work in progress. More packages to come.**
 - - -
 ##Licensing
