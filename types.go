@@ -18,12 +18,17 @@ type lengther interface {
 	setLength(int)
 }
 
+type lineWidther interface {
+	setLineWidth(int)
+}
+
 // Types
 
 type omissionOption func(omissioner)
 type separatorOption func(separatorer)
 type radiusOption func(radiuser)
 type lengthOption func(lengther)
+type lineWidthOption func(lineWidther)
 
 // Adds a custom omission
 func AddOmission(om string) omissionOption {
@@ -50,5 +55,12 @@ func AddRadius(rad int) radiusOption {
 func AddLength(l int) lengthOption {
 	return func(obj lengther) {
 		obj.setLength(l)
+	}
+}
+
+// Adds a custom line width
+func AddLineWidth(lw int) lineWidthOption {
+	return func(obj lineWidther) {
+		obj.setLineWidth(lw)
 	}
 }
