@@ -65,6 +65,12 @@ func Test_WordWrap(t *testing.T) {
 		{
 			in:           text,
 			addLineWidth: true,
+			lineWidth:    47,
+			out:          "Lorem ipsum dolor sit amet, consectetur\nadipiscing elit sil.",
+		},
+		{
+			in:           text,
+			addLineWidth: true,
 			lineWidth:    80,
 			out:          "Lorem ipsum dolor sit amet, consectetur adipiscing elit sil.",
 		},

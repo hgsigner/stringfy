@@ -30,22 +30,27 @@ func (wwr *WordWraper) Perform(text string) string {
 
 	tl := len(text)
 
+	// If the length of the text is less than
+	// or equal to the lineWidth, the whole
+	// text will be transformed into a line.
 	if tl <= wwr.lineWidth {
 		return text
 	}
 
+	// Gets the number of time that the loop will
+	// iterate over a text in order to break it
+	// into lines.
 	times := int(math.Ceil(float64(len(text)) / float64(wwr.lineWidth)))
-	//fmt.Println("times:", times)
 
-	lineH := make([]string, 0)
+	lineH := make([]string, 0) // A slice that holds the lines
 	for i := 0; i < times; i++ {
 
 		if text == "" {
 			continue
 		}
 
-		// Gets n number (wwr.lineWidth) characters from
-		// the text, starting from 0.
+		// Gets n number (wwr.lineWidth) of characters from
+		// text, starting from 0.
 		// It needs to test if the next character
 		// related to the last char from 0 to wwr.lineWidth
 		// is a whitspace. If true, the whole slice will
@@ -66,44 +71,39 @@ func (wwr *WordWraper) Perform(text string) string {
 			break
 		}
 
-		//fmt.Println("text:", text)
-
+		// Gets the slice from the the text
+		// in order to test against the
+		// the width that each line must have
+		// and for that, it gets the next char after
+		// the end of the slice.
 		textSlice := text[0:to]
-		//fmt.Println("textSlice:", textSlice)
 		nextChar := string(text[to-1])
-		//fmt.Printf("nextChar: (%s)\n", nextChar)
 
 		if nextChar != " " {
-			// If its found any last index of a whitespace char
+			// If its found any last index of a whitespace char,
+			// it means that a slice has stopped within a word.
+			// It can't break a line within a word.
 			lastWsIndex := strings.LastIndex(textSlice, " ")
-			//fmt.Println("lastWsIndex:", lastWsIndex)
 			if lastWsIndex != -1 {
-				//fmt.Printf("Line: (%s)\n", text[0:lastWsIndex])
 				lineH = append(lineH, text[0:lastWsIndex])
 				text = text[lastWsIndex+1:]
 			} else {
 				// It means that the word it bigger than the lineWidth
 				// The whole word will be line and the program will get
 				// the first ocurrence of a white space.
-
 				firstWsIndex := strings.Index(text, " ")
-				//fmt.Println("firstWsIndex:", firstWsIndex)
 				if firstWsIndex < 0 {
-					//fmt.Printf("Line: (%s)\n", text)
 					lineH = append(lineH, text)
 					text = ""
 				} else {
-					//fmt.Printf("Line: (%s)\n", text[0:firstWsIndex])
 					lineH = append(lineH, text[0:firstWsIndex])
 					text = text[firstWsIndex+1:]
 				}
 			}
 		} else {
-			//fmt.Printf("Line: (%s)\n", textSlice)
 			lineH = append(lineH, strings.Trim(textSlice, " "))
 			text = text[to:]
 		}
-		//fmt.Println("-------------")
 	}
 
 	lineH = append(lineH, text)

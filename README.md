@@ -194,6 +194,38 @@ stringfy.AddOmission(string)  // Default: "..."
 stringfy.AddSeparator(string) // Default: ""
 ```
 
+###WordWrap:
+
+```go
+package main
+
+import (
+  	"fmt"
+	"github.com/hgsigner/stringfy"
+)
+
+func main() {
+	text := "Lorem ipsum dolor sit amet, consectetur adipiscing elit sil."
+
+	wwr1 := stringfy.NewWordWrap()
+ 	wwr1.Perform(text) // "Lorem ipsum dolor sit amet, consectetur adipiscing elit sil."
+
+ 	wwr2 := stringfy.NewWordWrap()
+ 	wwr2.Options(stringfy.AddLineWidth(10))
+ 	wwr2.Perform(text) // "Lorem\nipsum\ndolor sit\namet,\nconsectetur\nadipiscing\nelit sil."
+
+ 	wwr3 := stringfy.NewWordWrap()
+ 	wwr3.Options(stringfy.AddLineWidth(35))
+ 	wwr3.Perform(text) // "Lorem ipsum dolor sit amet,\nconsectetur adipiscing elit sil."
+}
+```
+
+###Options:
+
+```go
+stringfy.AddLineWidth(int)       // Default: 80
+```
+
 - - -
 For more information, please refer to the [docs.](https://godoc.org/github.com/hgsigner/stringfy) **Work in progress. More packages to come.**
 - - -
