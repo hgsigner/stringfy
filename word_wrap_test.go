@@ -89,7 +89,9 @@ func Test_WordWrap(t *testing.T) {
 		}
 		wwrf := wwr.Perform(test.in)
 		if wwrf != test.out {
-			t.Errorf("\nExpected: %s\nGot:      %s", test.out, wwrf)
+			t.Fatalf("\nExpected: %s\nGot:      %s", test.out, wwrf)
+		} else {
+			t.Logf("Pass: %s", wwrf)
 		}
 	}
 }

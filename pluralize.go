@@ -7,8 +7,7 @@ import (
 )
 
 type PluralSet struct {
-	isPluralSet bool
-	plural      string
+	plural string
 }
 
 type optPlural func(*PluralSet)
@@ -30,7 +29,7 @@ func (ps *PluralSet) Perform(count int, singular string) string {
 
 	var plural_word string
 
-	if ps.isPluralSet {
+	if ps.plural != "" {
 		return fmt.Sprintf("%d %s", count, ps.plural)
 	} else {
 		plural_word = pluralize_word(singlDown)
@@ -47,7 +46,6 @@ func NewPlural() *PluralSet {
 // Adds custom plural to the word
 func AddPlural(pl string) optPlural {
 	return func(ps *PluralSet) {
-		ps.isPluralSet = true
 		ps.plural = pl
 	}
 }

@@ -77,5 +77,9 @@ func (t *Truncater) Perform(text string) string {
 // Creates a new instance of the Truncater struct
 // if its defaults.
 func NewTruncate() *Truncater {
-	return &Truncater{truncDefaultValue, "...", ""}
+	return &Truncater{
+		length:    truncDefaultValue,
+		omission:  "...",
+		separator: "",
+	}
 }
