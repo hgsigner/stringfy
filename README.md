@@ -1,15 +1,15 @@
-#Stringfy [![Build Status](https://travis-ci.org/hgsigner/stringfy.svg?branch=master)](https://travis-ci.org/hgsigner/stringfy) [![GoDoc](https://godoc.org/github.com/hgsigner/stringfy?status.svg)](https://godoc.org/github.com/hgsigner/stringfy)
+# Stringfy [![Build Status](https://travis-ci.org/hgsigner/stringfy.svg?branch=master)](https://travis-ci.org/hgsigner/stringfy) [![GoDoc](https://godoc.org/github.com/hgsigner/stringfy?status.svg)](https://godoc.org/github.com/hgsigner/stringfy)
 
 Stringfy is a string manipulation package for GO.
 - - -
 
-##Install:
+## Install:
 
 ```bash
 $ go get github.com/hgsigner/stringfy
 ```
 
-##Usage:
+## Usage:
 
 ```go
 package main
@@ -24,9 +24,9 @@ func main() {
  	fmt.Prinln(es) // Sao Paulo
 }
 ```
-##Functions:
+## Functions:
 
-###CamelCase:
+### CamelCase:
 
 ```go
 package main
@@ -42,7 +42,7 @@ func main() {
 }
 ```
 - - -
-###Escape:
+### Escape:
 
 ```go
 package main
@@ -58,7 +58,7 @@ func main() {
 }
 ```
 - - -
-###Parameterize:
+### Parameterize:
 
 ```go
 package main
@@ -74,7 +74,7 @@ func main() {
 }
 ```
 - - -
-###Underscore:
+### Underscore:
 
 ```go
 package main
@@ -90,7 +90,7 @@ func main() {
 }
 ```
 - - -
-###Plural:
+### Plural:
 
 ```go
 package main
@@ -112,13 +112,13 @@ func main() {
 }
 ```
 
-###Options:
+### Options:
 
 ```go
 stringfy.AddPlural(string)
 ```
 - - -
-###Truncate:
+### Truncate:
 
 ```go
 package main
@@ -146,7 +146,7 @@ func main() {
 }
 ```
 
-###Options:
+### Options:
 
 ```go
 stringfy.AddLength(int)       // Default: 30
@@ -157,7 +157,7 @@ stringfy.AddSeparator(string) // Default: ""
 ```
 
 - - -
-###Excerpt:
+### Excerpt:
 
 ```go
 package main
@@ -184,7 +184,7 @@ func main() {
 }
 ```
 
-###Options:
+### Options:
 
 ```go
 stringfy.AddRadius(int)       // Default: 100
@@ -194,7 +194,7 @@ stringfy.AddOmission(string)  // Default: "..."
 stringfy.AddSeparator(string) // Default: ""
 ```
 
-###WordWrap:
+### WordWrap:
 
 ```go
 package main
@@ -220,7 +220,7 @@ func main() {
 }
 ```
 
-###Options:
+### Options:
 
 ```go
 stringfy.AddLineWidth(int)       // Default: 80
@@ -229,5 +229,5 @@ stringfy.AddLineWidth(int)       // Default: 80
 - - -
 For more information, please refer to the [docs.](https://godoc.org/github.com/hgsigner/stringfy) **Work in progress. More packages to come.**
 - - -
-##Licensing
+## Licensing
 This package is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
