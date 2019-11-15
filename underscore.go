@@ -2,7 +2,7 @@ package stringfy
 
 import "strings"
 
-//Performs the the underscore function on a string.
+// Underscore pattern on a string.
 func Underscore(s string) string {
 
 	// Trims the string removing extra blank spcaces
@@ -19,5 +19,4 @@ func Underscore(s string) string {
 	}
 	joined := Escape(strings.Join(ssplit, "_"))
 	return joined
-
 }

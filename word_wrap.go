@@ -9,10 +9,12 @@ const (
 	wordWrapDefaultLineWidth = 80
 )
 
+// WordWraper struct
 type WordWraper struct {
 	lineWidth int
 }
 
+// Options sets LineWidthOption
 func (wwr *WordWraper) Options(options ...interface{}) {
 	for _, opt := range options {
 		switch opt.(type) {
@@ -25,7 +27,7 @@ func (wwr *WordWraper) Options(options ...interface{}) {
 // Set fields
 func (wwr *WordWraper) setLineWidth(lw int) { wwr.lineWidth = lw }
 
-// Performs the wraping of a given text.
+// Perform the wraping of a given text.
 func (wwr *WordWraper) Perform(text string) string {
 
 	tl := len(text)
@@ -79,39 +81,41 @@ func (wwr *WordWraper) Perform(text string) string {
 		textSlice := text[0:to]
 		nextChar := string(text[to-1])
 
-		if nextChar != " " {
-			// If its found any last index of a whitespace char,
-			// it means that a slice has stopped within a word.
-			// It can't break a line within a word.
-			lastWsIndex := strings.LastIndex(textSlice, " ")
-			if lastWsIndex != -1 {
-				lineH = append(lineH, text[0:lastWsIndex])
-				text = text[lastWsIndex+1:]
-			} else {
-				// It means that the word it bigger than the lineWidth
-				// The whole word will be line and the program will get
-				// the first ocurrence of a white space.
-				firstWsIndex := strings.Index(text, " ")
-				if firstWsIndex < 0 {
-					lineH = append(lineH, text)
-					text = ""
-				} else {
-					lineH = append(lineH, text[0:firstWsIndex])
-					text = text[firstWsIndex+1:]
-				}
-			}
-		} else {
+		if nextChar == " " {
 			lineH = append(lineH, strings.Trim(textSlice, " "))
 			text = text[to:]
+			continue
 		}
+
+		// If any last index of a whitespace char is found,
+		// it means that a slice has stopped within a word.
+		// It can't break a line within a word.
+		lastWsIndex := strings.LastIndex(textSlice, " ")
+		if lastWsIndex != -1 {
+			lineH = append(lineH, text[0:lastWsIndex])
+			text = text[lastWsIndex+1:]
+			continue
+		}
+
+		// It means that the word is bigger than the lineWidth
+		// The whole word will be in one line and the program will get
+		// the first ocurrence of a white space.
+		firstWsIndex := strings.Index(text, " ")
+		if firstWsIndex < 0 {
+			lineH = append(lineH, text)
+			text = ""
+			continue
+		}
+
+		lineH = append(lineH, text[0:firstWsIndex])
+		text = text[firstWsIndex+1:]
 	}
 
 	lineH = append(lineH, text)
 	return strings.Trim(strings.Join(lineH, "\n"), "\n")
-
 }
 
-// Creates a new instance of the WordWraper struct
+// NewWordWrap creates a new instance of the WordWraper struct
 // if its defaults.
 func NewWordWrap() *WordWraper {
 	return &WordWraper{wordWrapDefaultLineWidth}
