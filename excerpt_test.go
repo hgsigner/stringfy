@@ -30,7 +30,7 @@ func Test_Excerpt(t *testing.T) {
 			addRadious: true,
 			radious:    5,
 			out:        "",
-			errorOut:   "Phrase (bhtk) not found.",
+			errorOut:   "phrase (bhtk) not found",
 		},
 		{
 			text:       text,
@@ -94,7 +94,7 @@ func Test_Excerpt(t *testing.T) {
 			addSeparator: true,
 			separator:    " ",
 			out:          "",
-			errorOut:     "Phrase (bhtk) not found.",
+			errorOut:     "phrase (bhtk) not found",
 		},
 		{
 			text:         text,
@@ -114,7 +114,7 @@ func Test_Excerpt(t *testing.T) {
 			addSeparator: true,
 			separator:    " ",
 			out:          "",
-			errorOut:     "When composing the excerpt, your phrase should not contain more than one word.",
+			errorOut:     "when composing the excerpt, your phrase should not contain more than one word",
 		},
 		{
 			text:         text,
@@ -124,7 +124,7 @@ func Test_Excerpt(t *testing.T) {
 			addSeparator: true,
 			separator:    "-",
 			out:          "",
-			errorOut:     "When composing the excerpt, your phrase should not contain more than one word.",
+			errorOut:     "when composing the excerpt, your phrase should not contain more than one word",
 		},
 	}
 
