@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-// It formats strings to CamalCase,
+// CamelCase formats strings to CamalCase,
 // escaping special characters from the text.
 func CamelCase(st string) string {
 

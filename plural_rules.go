@@ -1,6 +1,6 @@
 package stringfy
 
-var plural_rules = map[string]string{
+var pluralRules = map[string]string{
 	`$`:                              "s",
 	`s$`:                             "s",
 	`^(ax|test)is$`:                  "${1}es",
@@ -24,7 +24,7 @@ var plural_rules = map[string]string{
 	`^(quiz)$`:                       "${1}zes",
 }
 
-var irregular_rules = map[string]string{
+var irregularRules = map[string]string{
 	"person": "people",
 	"man":    "men",
 	"child":  "children",
@@ -33,4 +33,15 @@ var irregular_rules = map[string]string{
 	"zombie": "zombies",
 }
 
-var uncountable_list = []string{"equipment", "information", "rice", "money", "species", "series", "fish", "sheep", "jeans", "police"}
+var uncountableList = []string{
+	"equipment",
+	"information",
+	"rice",
+	"money",
+	"species",
+	"series",
+	"fish",
+	"sheep",
+	"jeans",
+	"police",
+}

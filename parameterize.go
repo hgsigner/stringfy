@@ -2,7 +2,7 @@ package stringfy
 
 import "strings"
 
-//Performs the the parameterize function on a string.
+// Parameterize performs parameterization on a string.
 func Parameterize(s string) string {
 
 	// Trims the string removing extra blank spcaces
@@ -17,7 +17,7 @@ func Parameterize(s string) string {
 	if len(ssplit) == 1 {
 		return ssplit[0]
 	}
+
 	joined := Escape(strings.Join(ssplit, "-"))
 	return joined
-
 }
