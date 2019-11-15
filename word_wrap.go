@@ -16,8 +16,8 @@ type WordWraper struct {
 func (wwr *WordWraper) Options(options ...interface{}) {
 	for _, opt := range options {
 		switch opt.(type) {
-		case lineWidthOption:
-			opt.(lineWidthOption)(wwr)
+		case LineWidthOption:
+			opt.(LineWidthOption)(wwr)
 		}
 	}
 }

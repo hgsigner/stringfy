@@ -2,7 +2,7 @@ package stringfy
 
 import "regexp"
 
-// Escapes special characters from a text.
+// Escape special characters from a text.
 // Reads through the rules' table and
 // mateches if a given character is present
 // in the passed string. If so, it will replace it.

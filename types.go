@@ -22,44 +22,51 @@ type lineWidther interface {
 	setLineWidth(int)
 }
 
-// Types
+// OmissionOption function that accepts interface omissioner
+type OmissionOption func(omissioner)
 
-type omissionOption func(omissioner)
-type separatorOption func(separatorer)
-type radiusOption func(radiuser)
-type lengthOption func(lengther)
-type lineWidthOption func(lineWidther)
+// SeparatorOption is a function that accepts interface separatorer
+type SeparatorOption func(separatorer)
 
-// Adds a custom omission
-func AddOmission(om string) omissionOption {
+// RadiusOption is a function that accepts interface radiuser
+type RadiusOption func(radiuser)
+
+// LengthOption is a function that accepts interface lengther
+type LengthOption func(lengther)
+
+// LineWidthOption is a function that accepts interface lineWidther
+type LineWidthOption func(lineWidther)
+
+// AddOmission adds a custom omission
+func AddOmission(om string) OmissionOption {
 	return func(obj omissioner) {
 		obj.setOmission(om)
 	}
 }
 
-// Adds a custom separator
-func AddSeparator(sep string) separatorOption {
+// AddSeparator adds a custom separator
+func AddSeparator(sep string) SeparatorOption {
 	return func(obj separatorer) {
 		obj.setSeparator(sep)
 	}
 }
 
-// Adds a custom separator
-func AddRadius(rad int) radiusOption {
+// AddRadius adds a custom separator
+func AddRadius(rad int) RadiusOption {
 	return func(obj radiuser) {
 		obj.setRadius(rad)
 	}
 }
 
-// Adds a custom length
-func AddLength(l int) lengthOption {
+// AddLength adds a custom length
+func AddLength(l int) LengthOption {
 	return func(obj lengther) {
 		obj.setLength(l)
 	}
 }
 
-// Adds a custom line width
-func AddLineWidth(lw int) lineWidthOption {
+// AddLineWidth Adds a custom line width
+func AddLineWidth(lw int) LineWidthOption {
 	return func(obj lineWidther) {
 		obj.setLineWidth(lw)
 	}

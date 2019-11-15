@@ -18,16 +18,16 @@ type Excerpter struct {
 	omission  string
 }
 
-// Options sets radiusOption, omissionOption and separatorOption
+// Options sets RadiusOption, OmissionOption and SeparatorOption
 func (ex *Excerpter) Options(options ...interface{}) {
 	for _, opt := range options {
 		switch opt.(type) {
-		case radiusOption:
-			opt.(radiusOption)(ex)
-		case omissionOption:
-			opt.(omissionOption)(ex)
-		case separatorOption:
-			opt.(separatorOption)(ex)
+		case RadiusOption:
+			opt.(RadiusOption)(ex)
+		case OmissionOption:
+			opt.(OmissionOption)(ex)
+		case SeparatorOption:
+			opt.(SeparatorOption)(ex)
 		}
 	}
 }

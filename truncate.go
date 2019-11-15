@@ -9,31 +9,39 @@ const (
 	truncDefaultValue = 30
 )
 
+// Truncater struct
 type Truncater struct {
 	length    int
 	omission  string
 	separator string
 }
 
+// Options sets LengthOption, OmissionOption and SeparatorOption
 func (t *Truncater) Options(options ...interface{}) {
 	for _, opt := range options {
 		switch opt.(type) {
-		case lengthOption:
-			opt.(lengthOption)(t)
-		case omissionOption:
-			opt.(omissionOption)(t)
-		case separatorOption:
-			opt.(separatorOption)(t)
+		case LengthOption:
+			opt.(LengthOption)(t)
+		case OmissionOption:
+			opt.(OmissionOption)(t)
+		case SeparatorOption:
+			opt.(SeparatorOption)(t)
 		}
 	}
 }
 
 // Set fields
-func (t *Truncater) setLength(l int)         { t.length = l }
-func (t *Truncater) setOmission(om string)   { t.omission = om }
-func (t *Truncater) setSeparator(sep string) { t.separator = sep }
+func (t *Truncater) setLength(l int) {
+	t.length = l
+}
+func (t *Truncater) setOmission(om string) {
+	t.omission = om
+}
+func (t *Truncater) setSeparator(sep string) {
+	t.separator = sep
+}
 
-// Performs the truncation of a given text.
+// Perform the truncation of a given text.
 func (t *Truncater) Perform(text string) string {
 	// Returns the full text if its size is less
 	// or equal to the length passed.
@@ -71,10 +79,9 @@ func (t *Truncater) Perform(text string) string {
 	}
 
 	return fmt.Sprintf("%s%s", trimT[:lIndex], t.omission)
-
 }
 
-// Creates a new instance of the Truncater struct
+// NewTruncate creates a new instance of the Truncater struct
 // if its defaults.
 func NewTruncate() *Truncater {
 	return &Truncater{
