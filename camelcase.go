@@ -9,7 +9,6 @@ import (
 // CamelCase formats strings to CamalCase,
 // escaping special characters from the text.
 func CamelCase(st string) string {
-
 	lstring := strings.ToLower(st)
 
 	// Substitutes any _- character that might be
@@ -29,7 +28,7 @@ func CamelCase(st string) string {
 	for _, w := range splitWord {
 		if w != "" {
 			rword := []rune(w)
-			nw := fmt.Sprintf("%s%s", strings.ToUpper(string(rword[0])), string(rword[1:len(rword)]))
+			nw := fmt.Sprintf("%s%s", strings.ToUpper(string(rword[0])), string(rword[1:]))
 			enw := Escape(string(nw))
 			casedSlice = append(casedSlice, enw)
 		}
