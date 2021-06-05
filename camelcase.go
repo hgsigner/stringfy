@@ -26,12 +26,14 @@ func CamelCase(st string) string {
 	// to casedSlice, joins the casedSlice and returns it.
 	casedSlice := make([]string, 0)
 	for _, w := range splitWord {
-		if w != "" {
-			rword := []rune(w)
-			nw := fmt.Sprintf("%s%s", strings.ToUpper(string(rword[0])), string(rword[1:]))
-			enw := Escape(string(nw))
-			casedSlice = append(casedSlice, enw)
+		if w == "" {
+			continue
 		}
+
+		rword := []rune(w)
+		nw := fmt.Sprintf("%s%s", strings.ToUpper(string(rword[0])), string(rword[1:]))
+		enw := Escape(string(nw))
+		casedSlice = append(casedSlice, enw)
 	}
 	sj := strings.Join(casedSlice, "")
 

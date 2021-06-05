@@ -7,7 +7,6 @@ import (
 )
 
 func Test_CamelCase(t *testing.T) {
-
 	tests := []struct {
 		in, out string
 	}{
