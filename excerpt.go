@@ -14,9 +14,8 @@ const (
 // NewExcerpt creates a new instace of the Excerpter struct with its defaults.
 func NewExcerpt() *Excerpter {
 	return &Excerpter{
-		radius:    defaultExcerptRadius,
-		separator: "",
-		omission:  "...",
+		radius:   defaultExcerptRadius,
+		omission: "...",
 	}
 }
 

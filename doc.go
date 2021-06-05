@@ -1,4 +1,4 @@
-//Simple string manipulation for Go.
+// Package stringfy is a simple string manipulation for Go.
 //
 // Example of usage:
 //
