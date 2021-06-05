@@ -11,6 +11,12 @@ const (
 	defaultExcerptRadius = 100
 )
 
+// NewExcerpt creates a new instace of the Excerpter struct
+// if its defaults.
+func NewExcerpt() *Excerpter {
+	return &Excerpter{defaultExcerptRadius, "", "..."}
+}
+
 // Excerpter struct
 type Excerpter struct {
 	radius    int
@@ -73,21 +79,23 @@ func (ex *Excerpter) emptySpaceSeparator(text, phrase string) (string, error) {
 	// radius.
 	rangeSlice := make([]int, 0)
 	for i, word := range sText {
-		if word == phrase {
-			leftRange := i - ex.radius
-			if leftRange < 0 {
-				leftRange = 0
-			}
-
-			rightRange := (i + ex.radius) + 1
-			if rightRange >= sTextLen {
-				rightRange = sTextLen
-			}
-
-			rangeSlice = append(rangeSlice, leftRange, rightRange)
-
-			break
+		if word != phrase {
+			continue
 		}
+
+		leftRange := i - ex.radius
+		if leftRange < 0 {
+			leftRange = 0
+		}
+
+		rightRange := (i + ex.radius) + 1
+		if rightRange >= sTextLen {
+			rightRange = sTextLen
+		}
+
+		rangeSlice = append(rangeSlice, leftRange, rightRange)
+
+		break
 	}
 
 	// Tests if phrase was found in the text.
@@ -169,10 +177,4 @@ func (ex *Excerpter) Perform(text, phrase string) (string, error) {
 	}
 
 	return radText, nil
-}
-
-// NewExcerpt creates a new instace of the Excerpter struct
-// if its defaults.
-func NewExcerpt() *Excerpter {
-	return &Excerpter{defaultExcerptRadius, "", "..."}
 }
