@@ -4,7 +4,6 @@ import "strings"
 
 // Underscore pattern on a string.
 func Underscore(s string) string {
-
 	// Trims the string removing extra blank spcaces
 	// and splits the lower case version of the trimmed string.
 	strim := strings.Trim(s, " ")
@@ -17,6 +16,7 @@ func Underscore(s string) string {
 	if len(ssplit) == 1 {
 		return ssplit[0]
 	}
+
 	joined := Escape(strings.Join(ssplit, "_"))
 	return joined
 }

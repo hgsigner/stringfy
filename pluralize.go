@@ -6,6 +6,18 @@ import (
 	"strings"
 )
 
+// NewPlural initializes the PluralSet struct
+func NewPlural() *PluralSet {
+	return &PluralSet{}
+}
+
+// AddPlural adds custom plural to the word
+func AddPlural(pl string) OptPlural {
+	return func(ps *PluralSet) {
+		ps.plural = pl
+	}
+}
+
 // PluralSet struct
 type PluralSet struct {
 	plural string
@@ -21,8 +33,8 @@ func (ps *PluralSet) Options(options ...OptPlural) {
 	}
 }
 
-// Perform the pluralization. It accepts a connt, a singular
-// version of the word and, optionaly, the pluralized version of the word.
+// Perform the pluralization. It accepts a connt, a singular version of the word
+// and, optionaly, the pluralized version of the word.
 // E.g pluralize.AddPlural("boatys")
 func (ps *PluralSet) Perform(count int, singular string) string {
 	singlDown := strings.ToLower(singular)
@@ -37,18 +49,6 @@ func (ps *PluralSet) Perform(count int, singular string) string {
 
 	pluralWord := pluralizeWord(singlDown)
 	return fmt.Sprintf("%d %s", count, pluralWord)
-}
-
-// NewPlural initializes the PluralSet struct
-func NewPlural() *PluralSet {
-	return &PluralSet{}
-}
-
-// AddPlural adds custom plural to the word
-func AddPlural(pl string) OptPlural {
-	return func(ps *PluralSet) {
-		ps.plural = pl
-	}
 }
 
 func pluralizeWord(w string) string {
@@ -68,10 +68,8 @@ func pluralizeWord(w string) string {
 
 	var word string
 
-	// Iterates over pluralRules map
-	// and look for the word's plural in it.
-	// If it find the plural, it appends to the
-	// regexMatchesSlice [][]string
+	// Iterates over pluralRules map and look for the word's plural in it. If it
+	// find the plural, it appends to the regexMatchesSlice [][]string.
 	regexMatchesSlice := make([][]string, 0)
 	for reg, replacer := range pluralRules {
 		re := regexp.MustCompile(reg)

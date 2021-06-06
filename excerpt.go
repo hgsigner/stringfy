@@ -40,6 +40,32 @@ func (ex *Excerpter) Options(options ...interface{}) {
 	}
 }
 
+// Perform excerpt of a given text. Receices a text and a phrase.
+func (ex *Excerpter) Perform(text, phrase string) (string, error) {
+	if strings.ContainsAny(phrase, " ") {
+		return "", errors.New("when composing the excerpt, your phrase should not contain more than one word")
+	}
+
+	// Checks if the separator is an empty space, which means that it will compose
+	// the excerpt based on words.
+	if ex.separator == " " {
+		radText, err := ex.emptySpaceSeparator(text, phrase)
+		if err != nil {
+			return "", err
+		}
+
+		return radText, nil
+	}
+
+	// The separator is different than empty space.
+	radText, err := ex.notEmptySpaceSeparator(text, phrase)
+	if err != nil {
+		return "", err
+	}
+
+	return radText, nil
+}
+
 // Set fields
 func (ex *Excerpter) setRadius(r int) {
 	ex.radius = r
@@ -51,21 +77,6 @@ func (ex *Excerpter) setOmission(om string) {
 
 func (ex *Excerpter) setSeparator(sep string) {
 	ex.separator = sep
-}
-
-// Test text boundaries in order to add the omission
-func (ex *Excerpter) addOmissionToText(text string, max int, textBnd []int) string {
-	subText := text
-
-	if textBnd[0] > 0 {
-		subText = fmt.Sprintf("%s%s", ex.omission, subText)
-	}
-
-	if textBnd[1] != max {
-		subText = fmt.Sprintf("%s%s", subText, ex.omission)
-	}
-
-	return subText
 }
 
 func (ex *Excerpter) emptySpaceSeparator(text, phrase string) (string, error) {
@@ -144,28 +155,17 @@ func (ex *Excerpter) notEmptySpaceSeparator(text, phrase string) (string, error)
 	return ex.addOmissionToText(radText, tl, []int{leftRad, rightRad}), nil
 }
 
-// Perform excerpt of a given text. Receices a text and a phrase.
-func (ex *Excerpter) Perform(text, phrase string) (string, error) {
-	if strings.ContainsAny(phrase, " ") {
-		return "", errors.New("when composing the excerpt, your phrase should not contain more than one word")
+// Test text boundaries in order to add the omission
+func (ex *Excerpter) addOmissionToText(text string, max int, textBnd []int) string {
+	subText := text
+
+	if textBnd[0] > 0 {
+		subText = fmt.Sprintf("%s%s", ex.omission, subText)
 	}
 
-	// Checks if the separator is an empty space, which means that it will compose
-	// the excerpt based on words.
-	if ex.separator == " " {
-		radText, err := ex.emptySpaceSeparator(text, phrase)
-		if err != nil {
-			return "", err
-		}
-
-		return radText, nil
+	if textBnd[1] != max {
+		subText = fmt.Sprintf("%s%s", subText, ex.omission)
 	}
 
-	// The separator is different than empty space.
-	radText, err := ex.notEmptySpaceSeparator(text, phrase)
-	if err != nil {
-		return "", err
-	}
-
-	return radText, nil
+	return subText
 }
