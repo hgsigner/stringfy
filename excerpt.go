@@ -159,7 +159,6 @@ func (ex *Excerpter) Perform(text, phrase string) (string, error) {
 		}
 
 		return radText, nil
-
 	}
 
 	// The separator is different than empty space.
