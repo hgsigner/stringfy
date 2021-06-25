@@ -42,6 +42,7 @@ type target int
 const (
 	targetRadius target = iota
 	targetSeparator
+	targetOmission
 )
 
 // Option -

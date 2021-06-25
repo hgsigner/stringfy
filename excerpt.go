@@ -40,7 +40,16 @@ func (ex *Excerpter) Options(options ...interface{}) {
 
 // OptionsV2 -
 func (ex *Excerpter) OptionsV2(options ...Option) {
-
+	for _, opt := range options {
+		switch opt.Target {
+		case targetRadius:
+			ex.setRadius(int(opt.Integer))
+		case targetOmission:
+			ex.setOmission(opt.String)
+		case targetSeparator:
+			ex.setSeparator(opt.String)
+		}
+	}
 }
 
 // Perform excerpt of a given text. Receices a text and a phrase.
