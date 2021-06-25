@@ -1,6 +1,21 @@
 package stringfy
 
-// Interfaces
+type (
+	// OmissionOption function that accepts interface omissioner
+	OmissionOption func(omissioner)
+
+	// SeparatorOption is a function that accepts interface separatorer
+	SeparatorOption func(separatorer)
+
+	// RadiusOption is a function that accepts interface radiuser
+	RadiusOption func(radiuser)
+
+	// LengthOption is a function that accepts interface lengther
+	LengthOption func(lengther)
+
+	// LineWidthOption is a function that accepts interface lineWidther
+	LineWidthOption func(lineWidther)
+)
 
 type omissioner interface {
 	setOmission(string)
@@ -22,20 +37,20 @@ type lineWidther interface {
 	setLineWidth(int)
 }
 
-// OmissionOption function that accepts interface omissioner
-type OmissionOption func(omissioner)
+type target int
 
-// SeparatorOption is a function that accepts interface separatorer
-type SeparatorOption func(separatorer)
+const (
+	targetRadius target = iota
+	targetSeparator
+)
 
-// RadiusOption is a function that accepts interface radiuser
-type RadiusOption func(radiuser)
-
-// LengthOption is a function that accepts interface lengther
-type LengthOption func(lengther)
-
-// LineWidthOption is a function that accepts interface lineWidther
-type LineWidthOption func(lineWidther)
+// Option -
+type Option struct {
+	Target    target
+	Integer   int64
+	String    string
+	Interface interface{}
+}
 
 // AddOmission adds a custom omission
 func AddOmission(om string) OmissionOption {
@@ -51,10 +66,19 @@ func AddSeparator(sep string) SeparatorOption {
 	}
 }
 
-// AddRadius adds a custom separator
+// AddRadius adds a custom radius
 func AddRadius(rad int) RadiusOption {
 	return func(obj radiuser) {
 		obj.setRadius(rad)
+	}
+}
+
+// AddRadiusV2 adds a custom separator
+func AddRadiusV2(rad int) Option {
+	return Option{
+		Target:    targetRadius,
+		Integer:   int64(rad),
+		Interface: rad,
 	}
 }
 

@@ -7,9 +7,7 @@ import (
 	"strings"
 )
 
-const (
-	defaultExcerptRadius = 100
-)
+const defaultExcerptRadius = 100
 
 // NewExcerpt creates a new instace of the Excerpter struct with its defaults.
 func NewExcerpt() *Excerpter {
@@ -40,6 +38,11 @@ func (ex *Excerpter) Options(options ...interface{}) {
 	}
 }
 
+// OptionsV2 -
+func (ex *Excerpter) OptionsV2(options ...Option) {
+
+}
+
 // Perform excerpt of a given text. Receices a text and a phrase.
 func (ex *Excerpter) Perform(text, phrase string) (string, error) {
 	if strings.ContainsAny(phrase, " ") {
@@ -64,19 +67,6 @@ func (ex *Excerpter) Perform(text, phrase string) (string, error) {
 	}
 
 	return radText, nil
-}
-
-// Set fields
-func (ex *Excerpter) setRadius(r int) {
-	ex.radius = r
-}
-
-func (ex *Excerpter) setOmission(om string) {
-	ex.omission = om
-}
-
-func (ex *Excerpter) setSeparator(sep string) {
-	ex.separator = sep
 }
 
 func (ex *Excerpter) emptySpaceSeparator(text, phrase string) (string, error) {
@@ -168,4 +158,17 @@ func (ex *Excerpter) addOmissionToText(text string, max int, textBnd []int) stri
 	}
 
 	return subText
+}
+
+// Set fields
+func (ex *Excerpter) setRadius(r int) {
+	ex.radius = r
+}
+
+func (ex *Excerpter) setOmission(om string) {
+	ex.omission = om
+}
+
+func (ex *Excerpter) setSeparator(sep string) {
+	ex.separator = sep
 }
